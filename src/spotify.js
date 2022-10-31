@@ -1,7 +1,6 @@
 /* This page is is getting user logged in by client Id & getting token 
   from URI and exporting it which will help in maintaining acccess */
 
-
 export const authEndpoint = "https://accounts.spotify.com/authorize";
 const clientId = "cff76213089a4e228206c8bf120d67cb";
 const redirectUri = "http://localhost:3000/";

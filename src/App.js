@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
-import './App.css';
+import { useEffect, useState } from "react";
+import "./App.css";
 import Login from "./Login";
 /* lightweight wrapper for the Spotify Web API (
    It includes helper functions for all Spotify's
@@ -10,15 +10,15 @@ import Login from "./Login";
    and saved tracks management)
    https://jmperezperez.com/spotify-web-api-js/ => DOCS */
 import SpotifyWebApi from "spotify-web-api-js";
-import { getTokenFromResponse } from "./spotify"; 
-import Player from './Player';
-import { useDataLayerValue } from './DataLayer';
+import { getTokenFromResponse } from "./spotify";
+import Player from "./Player";
+import { useDataLayerValue } from "./DataLayer";
 
 const spotify = new SpotifyWebApi();
 
 function App() {
   //const [token, setToken] = useState(); // Read docs
-  const [{ user,token }, dispatch] = useDataLayerValue();
+  const [{ user, token }, dispatch] = useDataLayerValue();
   //Run code based on a given condition - userEffect()
   useEffect(() => {
     // code
@@ -30,23 +30,20 @@ function App() {
       dispatch({
         type: "SET_TOKEN",
         token: _token,
-      })
+      });
 
       spotify.setAccessToken(_token);
       spotify.getMe().then((user) => {
         dispatch({
-          type: 'SET_USER',
-          user : user,
+          type: "SET_USER",
+          user: user,
         });
       });
-
     }
   }, []);
   return (
     <div className="App">
-      {
-        token ? <Player spotify={spotify} /> : <Login/>
-      }
+      {token ? <Player spotify={spotify} /> : <Login />}
     </div>
   );
 }
